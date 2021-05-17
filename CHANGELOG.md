@@ -16,9 +16,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 
 ### Fixed
-- fixed syntax error
 
 ### Security
+
+
+## [1.0.1] - 2021-05-17
+
+### Fixed
+- fixed syntax error
 
 
 ## [1.0.0] - 2021-05-17

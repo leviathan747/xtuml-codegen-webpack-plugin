@@ -61,6 +61,7 @@ class XtumlCodegenWebpackPlugin {
 
   // check python dependencies
   checkDependencies() {
+    console.debug('\nChecking python dependencies...');
     // check that python exists
     try {
       execSync('python', {stdio: 'ignore'});
@@ -75,6 +76,7 @@ class XtumlCodegenWebpackPlugin {
         throw new Error(`\`${dep}\` is not installed. Install with \`pip install ${dep}\``);
       }
     }
+    console.debug('Done.');
   }
 
   // execute build
@@ -88,7 +90,7 @@ class XtumlCodegenWebpackPlugin {
 
   // pre-build
   async prebuild(compiler) {
-    console.log('\nStarting pre-build...');
+    console.debug('\nStarting pre-build...');
     await new Promise((resolve, reject) => {
       fs.mkdir(path.join(compiler.options.context, this.options.genWorkspace), {recursive: true}, err => {
         if (err) {
@@ -120,13 +122,13 @@ class XtumlCodegenWebpackPlugin {
         stdio: ['ignore', this.options.quiet > 1 ? 'ignore' : 'inherit', this.options.quiet > 0 ? 'ignore' : 'inherit',],
       }
     );
-    console.log('Done.');
+    console.debug('Done.');
     return exitcode;
   }
 
   // generate
   async generate(compiler) {
-    console.log('\nStarting code generation...');
+    console.debug('\nStarting code generation...');
     const archetypes = this.options.archetypes.map(p => path.isAbsolute(p) ? p : path.join(compiler.options.context, p));
     if (compiler.watchMode) {  // in watch mode, update the source list
       archetypes.forEach(arch => {
@@ -149,7 +151,7 @@ class XtumlCodegenWebpackPlugin {
         stdio: ['ignore', this.options.quiet > 1 ? 'ignore' : 'inherit', this.options.quiet > 0 ? 'ignore' : 'inherit',],
       }
     );
-    console.log('Done.');
+    console.debug('Done.');
     return exitcode;
   }
 

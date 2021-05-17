@@ -49,6 +49,7 @@ class XtumlCodegenWebpackPlugin {
     prebuildOutput: 'out.sql',
     sourceModels: [],
     archetypes: [],
+    genEnv: {},
   }
 
   constructor(options={}) {
@@ -148,6 +149,7 @@ class XtumlCodegenWebpackPlugin {
         path.join(compiler.options.context, this.options.genWorkspace, this.options.prebuildOutput),
       ].concat(...archetypes.map(a => ['-arch', a])),
       {
+        env: {...process.env, ...this.options.genEnv},
         stdio: ['ignore', this.options.quiet > 1 ? 'ignore' : 'inherit', this.options.quiet > 0 ? 'ignore' : 'inherit',],
       }
     );

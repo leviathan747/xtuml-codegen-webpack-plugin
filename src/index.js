@@ -141,7 +141,7 @@ class XtumlCodegenWebpackPlugin {
         'rsl.gen_erate',
         '-nopersist',
         '-import',
-        path.resolve(path.join(__dirname, '..', 'schema', 'schema.sql'),
+        path.resolve(path.join(__dirname, '..', 'schema', 'schema.sql')),
         '-import',
         path.join(compiler.options.context, this.options.genWorkspace, this.options.prebuildOutput),
       ].concat(...archetypes.map(a => ['-arch', a])),
